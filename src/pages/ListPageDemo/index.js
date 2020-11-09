@@ -10,43 +10,31 @@ import list from './data.json'
 
 const fields = [
   {
-    name: 'name',
-    label: 'Name',
+    name: 'nombre',
+    label: 'Nombre',
   },
   {
-    name: 'email',
-    label: 'E-Mail',
+    name: 'documento',
+    label: 'Documento'
   },
   {
-    name: 'amount',
-    label: 'Amount',
-    type: 'number',
+    name: '_id',
+    label: 'Historia_Clinica'
   },
   {
-    name: 'isActive',
-    label: 'Aktive',
-    type: 'bool',
-  },
-  {
-    name: 'registered',
-    label: 'Registered',
-    type: 'date',
-  },
-  {
-    name: 'registrationTime',
-    label: 'Registration time',
-    type: 'time',
+    name: 'orden',
+    label: 'Relacion_Vieja',
+    type: "number"
   },
 ]
 
 const Row = ({ index, style, data }) => {
-  const { name, amount = '', registered, email } = data
-
+  const { nombre, documento, _id, orden } = data
   return (
-    <div key={`${name}_${index}`} style={style}>
+    <div key={`${nombre}_${index}`} style={style}>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={`${name} ${index}`}
+          primary={`${nombre}`}
           secondary={
             <React.Fragment>
               <Typography
@@ -54,7 +42,7 @@ const Row = ({ index, style, data }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {email}
+                {documento}
               </Typography>
               <br />
               <Typography
@@ -62,7 +50,7 @@ const Row = ({ index, style, data }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {`${amount} ${registered}`}
+                {`${_id}`}
               </Typography>
             </React.Fragment>
           }
@@ -88,7 +76,7 @@ export default function () {
           pageTitle: intl.formatMessage(
             {
               id: 'list_page_demo',
-              defaultMessage: 'List Page demo with {count} rows',
+              defaultMessage: 'Lista de Pacientes Sintéticos con {count} registros',
             },
             { count: list.length }
           ),
