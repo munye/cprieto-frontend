@@ -1,0 +1,202 @@
+import React from 'react'
+import { ListPage } from 'material-ui-shell/lib/containers/Page'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import { useIntl } from 'react-intl'
+
+import list from './data.json'
+
+const fields = [
+  {
+    name: 'nombre',
+    label: 'Nombre',
+  },
+  {
+    name: 'documento',
+    label: 'Documento'
+  },
+  {
+    name: '_id',
+    label: 'Historia_Clinica'
+  },
+  {
+    name: 'orden',
+    label: 'Relacion_Vieja',
+    type: "number"
+  },
+]
+
+const Pager = () => {
+  return (
+    <div>
+      Teta
+    </div>
+  )
+}
+
+const Row = ({ index, style, data }) => {
+  const { nombre, documento, _id, orden } = data
+  return (
+    <div key={`${nombre}_${index}`} style={style}>
+      <ListItem alignItems="flex-start">
+        <ListItemText
+          primary={`${nombre}`}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                color="textSecondary"
+              >
+                {documento}
+              </Typography>
+              <br />
+              <Typography
+                component="span"
+                variant="body2"
+                color="textSecondary"
+              >
+                {`${_id}`}
+              </Typography>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <Divider />
+    </div>
+  )
+}
+
+export default function () {
+  const intl = useIntl()
+
+  return (
+<div className="list row">
+      <div className="col-md-8">
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by nombre"
+            value={searchNombre}
+            onChange={onChangeSearchNombre}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={retrieveTutorials}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <h4>Tutorials List</h4>
+
+        <div className="mt-3">
+          {"Items per Page: "}
+          <select onChange={handlePageSizeChange} value={pageSize}>
+            {pageSizes.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </select>
+
+          <Pagination
+            className="my-3"
+            count={count}
+            page={page}
+            siblingCount={1}
+            boundaryCount={1}
+            variant="outlined"
+            shape="rounded"
+            onChange={handlePageChange}
+          />
+        </div>
+
+        <ul className="list-group">
+          {tutorials &&
+            tutorials.map((tutorial, index) => (
+              <li
+                className={
+                  "list-group-item " + (index === currentIndex ? "active" : "")
+                }
+                onClick={() => setActiveTutorial(tutorial, index)}
+                key={index}
+              >
+                {tutorial.nombre}
+              </li>
+            ))}
+        </ul>
+
+        <button
+          className="m-3 btn btn-sm btn-danger"
+          onClick={removeAllTutorials}
+        >
+          Remove All
+        </button>
+      </div>
+      <div className="col-md-6">
+        {currentTutorial ? (
+          <div>
+            <h4>Tutorial</h4>
+            <div>
+              <label>
+                <strong>Nombre:</strong>
+              </label>{" "}
+              {currentTutorial.nombre}
+            </div>
+            <div>
+              <label>
+                <strong>Documento:</strong>
+              </label>{" "}
+              {currentTutorial.documento}
+            </div>
+            <div>
+              <label>
+                <strong>Status:</strong>
+              </label>{" "}
+              {currentTutorial.isActive ? "Active" : "Baja"}
+            </div>
+
+            <Link
+              to={"/people/" + currentTutorial.id}
+              className="badge badge-warning"
+            >
+              Edit
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <br />
+            <p>Please click on a Tutorial...</p>
+          </div>
+        )}
+      </div>
+      <ListPage
+      name="list_demo"
+      list={list}
+      fields={fields}
+      Row={Row}
+      listProps={{ itemSize: 91 }}
+      getPageProps={(list) => {
+        return {
+          pageTitle: intl.formatMessage(
+            {
+              id: 'list_page_demo',
+              defaultMessage: 'Lista de Pacientes Sintéticos con {count} registros',
+            },
+            { count: list.length }
+          ),
+        }
+      }}
+    />
+    </div>
+
+  )
+}

@@ -10,31 +10,43 @@ import list from './data.json'
 
 const fields = [
   {
-    name: 'nombre',
-    label: 'Nombre',
+    name: 'name',
+    label: 'Name',
   },
   {
-    name: 'documento',
-    label: 'Documento'
+    name: 'email',
+    label: 'E-Mail',
   },
   {
-    name: '_id',
-    label: 'Historia_Clinica'
+    name: 'amount',
+    label: 'Amount',
+    type: 'number',
   },
   {
-    name: 'orden',
-    label: 'Relacion_Vieja',
-    type: "number"
+    name: 'isActive',
+    label: 'Aktive',
+    type: 'bool',
+  },
+  {
+    name: 'registered',
+    label: 'Registered',
+    type: 'date',
+  },
+  {
+    name: 'registrationTime',
+    label: 'Registration time',
+    type: 'time',
   },
 ]
 
 const Row = ({ index, style, data }) => {
-  const { nombre, documento, _id, orden } = data
+  const { name, amount = '', registered, email } = data
+
   return (
-    <div key={`${nombre}_${index}`} style={style}>
+    <div key={`${name}_${index}`} style={style}>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={`${nombre}`}
+          primary={`${name} ${index}`}
           secondary={
             <React.Fragment>
               <Typography
@@ -42,7 +54,7 @@ const Row = ({ index, style, data }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {documento}
+                {email}
               </Typography>
               <br />
               <Typography
@@ -50,7 +62,7 @@ const Row = ({ index, style, data }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {`${_id}`}
+                {`${amount} ${registered}`}
               </Typography>
             </React.Fragment>
           }
@@ -76,7 +88,7 @@ export default function () {
           pageTitle: intl.formatMessage(
             {
               id: 'list_page_demo',
-              defaultMessage: 'Lista de Pacientes Sintéticos con {count} registros',
+              defaultMessage: 'List Page demo with {count} rows',
             },
             { count: list.length }
           ),
