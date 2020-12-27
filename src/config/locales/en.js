@@ -33,7 +33,7 @@ const messages = defineMessages({
   This receives a "handleClose" callback with wich you can close the dialog when your action is done.`,
   toast_demo:'Demo toast',
   filter_demo:'Demo filter',
-  list_page_demo:'List Page demo with {count} rows',
+  list_page_demo:'Cardioprieto stress load demo with {count} rows',
   forgot_password:'Forgot password',
   password_reset:'Password reset',
   password_confirm:'Password confirm',

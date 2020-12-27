@@ -31,6 +31,7 @@ const routes = [
   <AuthorizedRoute path="/filter_demo" exact component={FilterDemo} />,
   <AuthorizedRoute path="/list_page_demo" exact component={ListPageDemo} />,
   <AuthorizedRoute path="/tabs_demo" exact component={TabsDemo} />,
+  <AuthorizedRoute path="/my_demo" exact component={TabsDemo} />,
 ]
 
 export default routes

@@ -10,43 +10,44 @@ import list from './data.json'
 
 const fields = [
   {
-    name: 'name',
-    label: 'Name',
+    name: 'nombre',
+    label: 'Nombre',
   },
   {
     name: 'email',
     label: 'E-Mail',
   },
   {
-    name: 'amount',
-    label: 'Amount',
+    name: 'orden',
+    label: 'Orden',
     type: 'number',
   },
   {
     name: 'isActive',
-    label: 'Aktive',
+    label: 'fiambre',
     type: 'bool',
   },
   {
-    name: 'registered',
-    label: 'Registered',
+    name: 'documento',
+    label: 'Documento',
     type: 'date',
   },
-  {
-    name: 'registrationTime',
-    label: 'Registration time',
-    type: 'time',
-  },
+  /*   {
+      name: 'registrationTime',
+      label: 'Registration time',
+      type: 'time',
+    },
+   */
 ]
 
 const Row = ({ index, style, data }) => {
-  const { name, amount = '', registered, email } = data
+  const { nombre, email, orden, isActive, documento } = data
 
   return (
-    <div key={`${name}_${index}`} style={style}>
+    <div key={`${nombre}_${index}`} style={style}>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={`${name} ${index}`}
+          primary={`${nombre} ${index}`}
           secondary={
             <React.Fragment>
               <Typography
@@ -62,7 +63,7 @@ const Row = ({ index, style, data }) => {
                 variant="body2"
                 color="textSecondary"
               >
-                {`${amount} ${registered}`}
+                {`${orden} ${documento}`}
               </Typography>
             </React.Fragment>
           }
