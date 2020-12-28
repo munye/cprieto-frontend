@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ListPage } from 'material-ui-shell/lib/containers/Page'
-import Pagination from "@material-ui/lab/Pagination";
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
@@ -41,15 +40,7 @@ const fields = [
    */
 ]
 
-
 const Row = ({ index, style, data }) => {
-
-  const [page, setPage] = useState(1);
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
   const { nombre, email, orden, isActive, documento } = data
 
   return (
@@ -87,28 +78,23 @@ export default function () {
   const intl = useIntl()
 
   return (
-    <div>
-      <ListPage
-        name="list_demo"
-        list={list}
-        fields={fields}
-        Row={Row}
-        listProps={{ itemSize: 91 }}
-        getPageProps={(list) => {
-          return {
-            pageTitle: intl.formatMessage(
-              {
-                id: 'list_page_demo',
-                defaultMessage: 'List Page demo with {count} rows',
-              },
-              { count: list.length }
-            ),
-          }
-        }}
-      />
-      <Pagination>
-
-      </Pagination>
-    </div>
+    <ListPage
+      name="list_demo"
+      list={list}
+      fields={fields}
+      Row={Row}
+      listProps={{ itemSize: 91 }}
+      getPageProps={(list) => {
+        return {
+          pageTitle: intl.formatMessage(
+            {
+              id: 'list_page_demo',
+              defaultMessage: 'List Page demo with {count} rows',
+            },
+            { count: list.length }
+          ),
+        }
+      }}
+    />
   )
 }
