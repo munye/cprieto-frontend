@@ -87,28 +87,23 @@ export default function () {
   const intl = useIntl()
 
   return (
-    <div>
-      <ListPage
-        name="list_demo"
-        list={list}
-        fields={fields}
-        Row={Row}
-        listProps={{ itemSize: 91 }}
-        getPageProps={(list) => {
-          return {
-            pageTitle: intl.formatMessage(
-              {
-                id: 'list_page_demo',
-                defaultMessage: 'List Page demo with {count} rows',
-              },
-              { count: list.length }
-            ),
-          }
-        }}
-      />
-      <Pagination>
-
-      </Pagination>
-    </div>
+    <ListPage
+      name="list_demo"
+      list={list}
+      fields={fields}
+      Row={Row}
+      listProps={{ itemSize: 91 }}
+      getPageProps={(list) => {
+        return {
+          pageTitle: intl.formatMessage(
+            {
+              id: 'list_page_demo',
+              defaultMessage: 'List Page demo with {count} rows',
+            },
+            { count: list.length }
+          ),
+        }
+      }}
+    />
   )
 }
