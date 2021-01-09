@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { ListPage } from 'material-ui-shell/lib/containers/Page'
-import Pagination from "@material-ui/lab/Pagination";
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'

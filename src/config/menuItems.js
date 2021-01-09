@@ -126,6 +126,15 @@ const getMenuItems = (props) => {
           leftIcon: <ViewList />,
         },
         {
+          value: '/my_list_demo',
+          visible: isAuthorised,
+          primaryText: intl.formatMessage({
+            id: 'my_list_demo_menu',
+            defaultMessage: 'My List',
+          }),
+          leftIcon: <ViewList />,
+        },
+        {
           value: '/tabs_demo',
           visible: isAuthorised,
           primaryText: intl.formatMessage({
