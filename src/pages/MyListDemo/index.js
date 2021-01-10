@@ -42,23 +42,6 @@ const fields = [
    */
 ]
 
-const RetrieveTutorials = () => {
-  const [tutorials, setTutorials] = useState([]);
-
-  console.log('HOLA MUNDO ENTERO');
-  TutorialDataService.getAll()
-    .then((response) => {
-      const { tutorials, totalPages } = response.data;
-      setTutorials(tutorials);
-      //    setCount(totalPages);
-      console.log('HOLA MUNDO ENTERO 2');
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
-
 const Row = ({ index, style, data }) => {
 
   const [page, setPage] = useState(1);
@@ -104,17 +87,35 @@ const Row = ({ index, style, data }) => {
 export default function () {
   const intl = useIntl()
 
-  const putoelquelee = () => {
-    console.log('PUTOELQUELEE')
-  };
+  const [tutorials, setTutorials] = useState([]);
 
-  useEffect(putoelquelee);
-
+  const RetrieveTutorials = () => {
   
+    let params = {};
+    console.log('HOLA MUNDO ENTERO');
+    params["size"] = 40000;
+
+    TutorialDataService.getAll(params)
+      .then((response) => {
+        const { tutorials, totalPages } = response.data;
+        setTutorials(tutorials);
+        //    setCount(totalPages);
+        console.log('HOLA MUNDO ENTERO 2');
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  
+  useEffect(() => {
+    RetrieveTutorials({});
+  }, []);
+
   return (
     <ListPage
-      name="list_demo"
-      list={list}
+      name="my_list_demo"
+      list={tutorials}
       fields={fields}
       Row={Row}
       listProps={{ itemSize: 91 }}
@@ -122,8 +123,8 @@ export default function () {
         return {
           pageTitle: intl.formatMessage(
             {
-              id: 'list_page_demo',
-              defaultMessage: 'List Page demo with {count} rows',
+              id: 'my_list_demo',
+              defaultMessage: 'Cardioprieto pacientes con {count} pacientes',
             },
             { count: list.length }
           ),
